@@ -128,15 +128,7 @@ mod imp {
             }
             let content_encoding_gzip: bool;
             let mut is_gzip = {
-                content_encoding_gzip = headers
-                    .get_all(CONTENT_ENCODING)
-                    .iter()
-                    .any(|enc| enc == "gzip");
-                content_encoding_gzip
-                    || headers
-                        .get_all(TRANSFER_ENCODING)
-                        .iter()
-                        .any(|enc| enc == "gzip")
+                true
             };
             if is_gzip {
                 if let Some(content_length) = headers.get(CONTENT_LENGTH) {
