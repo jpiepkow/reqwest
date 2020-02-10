@@ -122,7 +122,7 @@ mod imp {
         /// how to decode the content body of the request.
         ///
         /// Uses the correct variant by inspecting the Content-Encoding header.
-        pub(crate) fn detect(headers: &mut HeaderMap, body: Body, check_gzip: bool,) -> Decoder {
+        pub(crate) fn detect(headers: &mut HeaderMap, body: Body, check_gzip: bool) -> Decoder {
             if !check_gzip {
                 return Decoder::plain_text(body);
             }
