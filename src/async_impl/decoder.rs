@@ -122,13 +122,18 @@ mod imp {
         /// how to decode the content body of the request.
         ///
         /// Uses the correct variant by inspecting the Content-Encoding header.
-        pub(crate) fn detect(headers: &mut HeaderMap, body: Body, check_gzip: bool) -> Decoder {
+        pub(crate) fn detect(headers: &mut HeaderMap, body: Body, check_gzip: bool,) -> Decoder {
             if !check_gzip {
                 return Decoder::plain_text(body);
             }
             let content_encoding_gzip: bool;
             let mut is_gzip = {
-                true
+                content_encoding_gzip = true;
+                content_encoding_gzip
+                    || headers
+                        .get_all(TRANSFER_ENCODING)
+                        .iter()
+                        .any(|enc| enc == "gzip")
             };
             if is_gzip {
                 if let Some(content_length) = headers.get(CONTENT_LENGTH) {

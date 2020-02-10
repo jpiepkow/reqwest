@@ -105,7 +105,7 @@ cookie_crate = { version = "0.12", package = "cookie", optional = true }
 cookie_store = { version = "0.10", optional = true }
 
 ## gzip
-async-compression = { version = "0.2.0", default-features = false, features = ["gzip", "stream"], optional = true }
+async-compression = { git = "https://github.com/jpiepkow/async-compression", branch = "gzip-concatenated-files", default-features = false, features = ["gzip", "stream"], optional = true }
 
 
 ## socks
